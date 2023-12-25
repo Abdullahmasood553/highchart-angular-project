@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #chartForm="ngForm">
+      <div class="form-group">
+        <label for="chartName">Chart Name:</label>
+        <input type="text" class="form-control" id="chartName" name="chartName" [(ngModel)]="chartData.name" required>
+      </div>
+      <div class="form-group">
+        <label for="chartType">Chart Type:</label>
+        <select class="form-control" id="chartType" name="chartType" [(ngModel)]="chartData.type" 
+                (change)="onChartTypeChange()" required>
+          <option value="line">Line</option>
+          <option value="spline">Spline</option>
+          <option value="area">Area</option>
+          <option value="areaspline">Area Spline</option>
+          <option value="column">Column</option>
+          <option value="bar">Bar</option>
+          <option value="pie">Pie</option>
+          <option value="scatter">Scatter</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="chartColor">Chart Color:</label>
+        <input type="color" class="form-control" id="chartColor" name="chartColor" [(ngModel)]="chartData.color" (change)="onColorSelect(chartData.color)" required>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onSave()" [disabled]="chartForm.invalid">Save</button>
+  </div>
+  

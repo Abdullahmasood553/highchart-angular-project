@@ -1,0 +1,36 @@
+<div *ngIf="charts.length > 0" class="chart-container">
+  <div class="filter-container">
+    <label for="startDate">Start Date:</label>
+    <input
+      type="date"
+      id="startDate"
+      class="form-control"
+      [(ngModel)]="startDate"
+      (ngModelChange)="onDateChange()"
+    />
+    <label for="endDate">End Date:</label>
+    <input
+      type="date"
+      id="endDate"
+      class="form-control"
+      [(ngModel)]="endDate"
+      (ngModelChange)="onDateChange()"
+    />
+  </div>
+
+  
+  <div *ngFor="let chart of charts" class="chart-wrapper">
+    
+    <highcharts-chart
+    *ngIf="chart" 
+    [Highcharts]="Highcharts"
+    [options]="chart.options"
+      [update]="true"
+      [oneToOne]="true"
+    ></highcharts-chart>
+  </div>
+
+</div>
+<div *ngIf="charts.length === 0" class="no-charts-message">
+  <p>No charts available.</p>
+</div>
